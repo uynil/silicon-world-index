@@ -1,0 +1,863 @@
+{
+  "metadata": {
+    "updatedAt": "2026-05-31",
+    "period": "2026-05",
+    "methodologyVersion": "0.1.0",
+    "summary": "Initial semi-automatic baseline. Scores are curated from public benchmark and adoption signals, with strict separation between technical capability and AI-led autonomy."
+  },
+  "headlineWeights": {
+    "capability": 0.35,
+    "autonomy": 0.45,
+    "governance": 0.2
+  },
+  "modules": [
+    {
+      "id": "model-intelligence",
+      "name": "Model intelligence",
+      "category": "capability",
+      "score": 54.6,
+      "confidence": 0.72,
+      "weight": 0.35,
+      "bottleneck": "Reliability still trails benchmark performance",
+      "summary": "Frontier models are strong at language, code, and reasoning, but factuality and self-verification remain limits for world-level delegation.",
+      "criteria": [
+        {
+          "id": "general-benchmarks",
+          "name": "General benchmark strength",
+          "score": 72,
+          "weight": 0.3,
+          "rawValue": "Composite view of public model leaderboards and AI Index technical performance",
+          "normalization": "Curated 0-100 score; high benchmark capability receives credit but is discounted for benchmark saturation.",
+          "source": {
+            "label": "Stanford AI Index",
+            "url": "https://aiindex.stanford.edu/report/",
+            "publisher": "Stanford HAI",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "annual",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.75,
+          "notes": "Useful for broad technical capability, not direct autonomy."
+        },
+        {
+          "id": "code-reasoning",
+          "name": "Code and reasoning performance",
+          "score": 58,
+          "weight": 0.3,
+          "rawValue": "SWE-bench, LiveCodeBench, and reasoning benchmark signals",
+          "normalization": "Curated score emphasizing contamination-resistant and real-task benchmarks.",
+          "source": {
+            "label": "LiveCodeBench",
+            "url": "https://livecodebench.github.io/",
+            "publisher": "LiveCodeBench",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "continuous",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.68,
+          "notes": "Strong but still brittle outside benchmark framing."
+        },
+        {
+          "id": "truthfulness",
+          "name": "Factual reliability and self-checking",
+          "score": 36,
+          "weight": 0.25,
+          "rawValue": "Known hallucination, citation, and self-correction limitations",
+          "normalization": "Curated penalty for residual hallucination and weak self-verification.",
+          "source": {
+            "label": "HELM",
+            "url": "https://crfm.stanford.edu/helm/",
+            "publisher": "Stanford CRFM",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.62,
+          "notes": "Reliability is the largest reason capability does not translate into leadership."
+        },
+        {
+          "id": "long-context",
+          "name": "Long-context consistency",
+          "score": 44,
+          "weight": 0.15,
+          "rawValue": "Long document and multi-file workflow behavior",
+          "normalization": "Curated score based on practical use rather than nominal context length.",
+          "source": {
+            "label": "Artificial Analysis",
+            "url": "https://artificialanalysis.ai/",
+            "publisher": "Artificial Analysis",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "continuous",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.55,
+          "notes": "Large windows help, but consistent global reasoning is still uneven."
+        }
+      ]
+    },
+    {
+      "id": "multimodal-content",
+      "name": "Multimodal content",
+      "category": "capability",
+      "score": 49.8,
+      "confidence": 0.66,
+      "weight": 0.25,
+      "bottleneck": "Generation is strong, production control is still human-led",
+      "summary": "Image, audio, video, and document models are useful in production, but humans still drive intent, quality control, and distribution.",
+      "criteria": [
+        {
+          "id": "image-document-understanding",
+          "name": "Image and document understanding",
+          "score": 62,
+          "weight": 0.35,
+          "rawValue": "OCR, chart, image, and document model capability",
+          "normalization": "Curated score from public multimodal model performance.",
+          "source": {
+            "label": "Stanford AI Index technical performance",
+            "url": "https://aiindex.stanford.edu/report/",
+            "publisher": "Stanford HAI",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "annual",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.68,
+          "notes": "Useful for analysis workflows, less reliable for high-stakes extraction."
+        },
+        {
+          "id": "video-audio-generation",
+          "name": "Video and audio generation",
+          "score": 54,
+          "weight": 0.3,
+          "rawValue": "Frontier media generation systems",
+          "normalization": "Curated score with penalty for controllability and consistency limits.",
+          "source": {
+            "label": "AI Index trends",
+            "url": "https://aiindex.stanford.edu/report/",
+            "publisher": "Stanford HAI",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "annual",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.58,
+          "notes": "Creative output is impressive, but workflow control is not autonomous."
+        },
+        {
+          "id": "content-production-control",
+          "name": "End-to-end content production control",
+          "score": 34,
+          "weight": 0.35,
+          "rawValue": "Planning, generation, editing, publishing, and feedback loops",
+          "normalization": "Curated autonomy-discounted score.",
+          "source": {
+            "label": "McKinsey State of AI",
+            "url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+            "publisher": "McKinsey",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "annual",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.54,
+          "notes": "Adoption is broad, but humans still own editorial judgment."
+        }
+      ]
+    },
+    {
+      "id": "scientific-discovery",
+      "name": "Scientific discovery",
+      "category": "capability",
+      "score": 41,
+      "confidence": 0.61,
+      "weight": 0.2,
+      "bottleneck": "AI assists science more than it autonomously discovers",
+      "summary": "AI meaningfully accelerates research workflows, especially in biology and materials, but autonomous discovery loops remain early.",
+      "criteria": [
+        {
+          "id": "research-assistance",
+          "name": "Research assistance capability",
+          "score": 56,
+          "weight": 0.4,
+          "rawValue": "Literature, hypothesis, coding, and analysis assistance",
+          "normalization": "Curated score based on observed scientific workflow usefulness.",
+          "source": {
+            "label": "AI Index science section",
+            "url": "https://aiindex.stanford.edu/report/",
+            "publisher": "Stanford HAI",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "annual",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.62,
+          "notes": "Strong as a collaborator, weaker as an independent scientist."
+        },
+        {
+          "id": "lab-automation-loop",
+          "name": "Closed-loop lab automation",
+          "score": 26,
+          "weight": 0.35,
+          "rawValue": "Autonomous experiment design, execution, and validation",
+          "normalization": "Curated score with strict autonomy requirement.",
+          "source": {
+            "label": "Nature machine-learning research topic",
+            "url": "https://www.nature.com/subjects/machine-learning",
+            "publisher": "Nature",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "continuous",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.48,
+          "notes": "Promising systems exist, but broad reliable autonomy is not present."
+        },
+        {
+          "id": "validation-reproducibility",
+          "name": "Validation and reproducibility",
+          "score": 38,
+          "weight": 0.25,
+          "rawValue": "Ability to produce validated, reproducible discoveries",
+          "normalization": "Curated score for reproducibility and independent verification.",
+          "source": {
+            "label": "OECD AI policy and evidence",
+            "url": "https://oecd.ai/",
+            "publisher": "OECD",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "continuous",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.5,
+          "notes": "Validation remains a human-heavy bottleneck."
+        }
+      ]
+    },
+    {
+      "id": "compute-infrastructure",
+      "name": "Compute infrastructure",
+      "category": "capability",
+      "score": 54.2,
+      "confidence": 0.75,
+      "weight": 0.2,
+      "bottleneck": "Energy and supply chains constrain scaling",
+      "summary": "Training and inference infrastructure continues to scale quickly, but power, chips, memory, and data center capacity are binding constraints.",
+      "criteria": [
+        {
+          "id": "frontier-compute",
+          "name": "Frontier training compute",
+          "score": 68,
+          "weight": 0.35,
+          "rawValue": "Training compute trend and frontier model scale",
+          "normalization": "Curated score from Epoch trends.",
+          "source": {
+            "label": "Epoch AI Trends",
+            "url": "https://epoch.ai/trends",
+            "publisher": "Epoch AI",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "semi_automatic"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.78,
+          "notes": "The supply side is advancing quickly."
+        },
+        {
+          "id": "inference-cost",
+          "name": "Inference affordability",
+          "score": 52,
+          "weight": 0.25,
+          "rawValue": "Model serving cost and availability signals",
+          "normalization": "Curated score based on cost declines and deployment friction.",
+          "source": {
+            "label": "Epoch AI data",
+            "url": "https://epoch.ai/data",
+            "publisher": "Epoch AI",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "semi_automatic"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.66,
+          "notes": "Costs are improving but remain meaningful for sustained autonomy."
+        },
+        {
+          "id": "energy-capacity",
+          "name": "Energy and data center capacity",
+          "score": 42,
+          "weight": 0.25,
+          "rawValue": "AI data center power demand and grid constraints",
+          "normalization": "Curated score where constraints reduce readiness.",
+          "source": {
+            "label": "IEA energy and AI",
+            "url": "https://www.iea.org/",
+            "publisher": "International Energy Agency",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.7,
+          "notes": "Power availability increasingly shapes deployment."
+        },
+        {
+          "id": "supply-chain",
+          "name": "Chip and memory supply chain",
+          "score": 46,
+          "weight": 0.15,
+          "rawValue": "GPU, accelerator, HBM, and fabrication supply constraints",
+          "normalization": "Curated infrastructure readiness score.",
+          "source": {
+            "label": "Semiconductor Industry Association",
+            "url": "https://www.semiconductors.org/",
+            "publisher": "SIA",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.58,
+          "notes": "Scaling is not limited by algorithms alone."
+        }
+      ]
+    },
+    {
+      "id": "agent-execution",
+      "name": "Agent execution",
+      "category": "autonomy",
+      "score": 31.8,
+      "confidence": 0.67,
+      "weight": 0.3,
+      "bottleneck": "Long-horizon reliability remains low",
+      "summary": "Agents can complete constrained tasks, especially coding issues, but sustained autonomous execution remains fragile.",
+      "criteria": [
+        {
+          "id": "issue-repair",
+          "name": "Single issue repair",
+          "score": 52,
+          "weight": 0.25,
+          "rawValue": "SWE-bench Verified style repository tasks",
+          "normalization": "Curated score discounted for benchmark limitations.",
+          "source": {
+            "label": "SWE-bench",
+            "url": "https://www.swebench.com/",
+            "publisher": "SWE-bench",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "continuous",
+            "automationStatus": "semi_automatic"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.72,
+          "notes": "Best current evidence for practical agent task completion."
+        },
+        {
+          "id": "time-horizon",
+          "name": "Long task time horizon",
+          "score": 24,
+          "weight": 0.35,
+          "rawValue": "METR task-completion time horizon framing",
+          "normalization": "Strict autonomy score based on long-task bottlenecks.",
+          "source": {
+            "label": "METR Time Horizons",
+            "url": "https://metr.org/",
+            "publisher": "METR",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "semi_automatic"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.68,
+          "notes": "The core metric for whether agents can work without constant supervision."
+        },
+        {
+          "id": "tool-recovery",
+          "name": "Tool failure recovery",
+          "score": 34,
+          "weight": 0.2,
+          "rawValue": "Terminal, browser, API, and CI recovery behavior",
+          "normalization": "Curated score from observed workflow reliability.",
+          "source": {
+            "label": "AI Coding Agent Readiness Checklist",
+            "url": "https://github.com/",
+            "publisher": "GitHub ecosystem",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.5,
+          "notes": "Recovery depends heavily on project verification infrastructure."
+        },
+        {
+          "id": "low-supervision",
+          "name": "Low-supervision execution",
+          "score": 18,
+          "weight": 0.2,
+          "rawValue": "Hours of useful work without human intervention",
+          "normalization": "Curated strict autonomy score.",
+          "source": {
+            "label": "METR evaluations",
+            "url": "https://metr.org/",
+            "publisher": "METR",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.56,
+          "notes": "Most real deployments still require frequent human review."
+        }
+      ]
+    },
+    {
+      "id": "tools-workflows",
+      "name": "Tools and workflows",
+      "category": "autonomy",
+      "score": 40.8,
+      "confidence": 0.61,
+      "weight": 0.2,
+      "bottleneck": "Verification infrastructure is uneven",
+      "summary": "Tool calling and IDE integration are mature enough for assistance, but end-to-end workflows still rely on human-owned verification.",
+      "criteria": [
+        {
+          "id": "tool-use",
+          "name": "Tool use maturity",
+          "score": 56,
+          "weight": 0.3,
+          "rawValue": "Function calling, browser use, terminal use, and API integration",
+          "normalization": "Curated score for availability and stability.",
+          "source": {
+            "label": "OpenAI platform docs",
+            "url": "https://platform.openai.com/docs",
+            "publisher": "OpenAI",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "continuous",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.62,
+          "notes": "Tool use is mainstream, but tool outcomes still need checking."
+        },
+        {
+          "id": "workflow-integration",
+          "name": "Workflow integration",
+          "score": 42,
+          "weight": 0.3,
+          "rawValue": "IDE, SaaS, GitHub, Slack, CRM, and internal tool integration",
+          "normalization": "Curated score for real workflow adoption.",
+          "source": {
+            "label": "McKinsey State of AI",
+            "url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+            "publisher": "McKinsey",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "annual",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.58,
+          "notes": "Adoption exists, but deployment quality varies widely."
+        },
+        {
+          "id": "verification",
+          "name": "Verification infrastructure",
+          "score": 30,
+          "weight": 0.25,
+          "rawValue": "Tests, CI, sandboxing, rollback, and observability",
+          "normalization": "Curated score for agent-ready verification.",
+          "source": {
+            "label": "AI Coding Agent Readiness Checklist",
+            "url": "https://github.com/",
+            "publisher": "GitHub ecosystem",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.54,
+          "notes": "The limiting factor is often the environment, not only the model."
+        },
+        {
+          "id": "orchestration",
+          "name": "Autonomous orchestration",
+          "score": 26,
+          "weight": 0.15,
+          "rawValue": "Multi-step planning, retries, delegation, and state tracking",
+          "normalization": "Curated strict autonomy score.",
+          "source": {
+            "label": "LangChain agent patterns",
+            "url": "https://www.langchain.com/",
+            "publisher": "LangChain",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "continuous",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.45,
+          "notes": "Frameworks are improving faster than production confidence."
+        }
+      ]
+    },
+    {
+      "id": "data-memory",
+      "name": "Data and memory",
+      "category": "autonomy",
+      "score": 36.4,
+      "confidence": 0.55,
+      "weight": 0.15,
+      "bottleneck": "World state and enterprise memory are fragmented",
+      "summary": "AI has broad public knowledge but weak durable memory, provenance, and controlled access to private operational state.",
+      "criteria": [
+        {
+          "id": "public-knowledge",
+          "name": "Public knowledge coverage",
+          "score": 66,
+          "weight": 0.25,
+          "rawValue": "Pretraining and retrieval over public information",
+          "normalization": "Curated score for broad knowledge availability.",
+          "source": {
+            "label": "Stanford AI Index",
+            "url": "https://aiindex.stanford.edu/report/",
+            "publisher": "Stanford HAI",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "annual",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.62,
+          "notes": "Public knowledge is abundant but not always current or grounded."
+        },
+        {
+          "id": "enterprise-data-readiness",
+          "name": "Enterprise data readiness",
+          "score": 28,
+          "weight": 0.3,
+          "rawValue": "Data quality, access control, lineage, and AI readiness",
+          "normalization": "Curated score based on common enterprise blockers.",
+          "source": {
+            "label": "Met Office AI data readiness checklist",
+            "url": "https://github.com/informatics-lab/AI-Data-Readiness",
+            "publisher": "Met Office Informatics Lab",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.55,
+          "notes": "Data governance remains one of the largest adoption blockers."
+        },
+        {
+          "id": "persistent-memory",
+          "name": "Persistent project memory",
+          "score": 22,
+          "weight": 0.25,
+          "rawValue": "Cross-task memory, continuity, and forgetting resistance",
+          "normalization": "Curated early-stage autonomy score.",
+          "source": {
+            "label": "SWE-bench continual learning research",
+            "url": "https://www.swebench.com/",
+            "publisher": "SWE-bench ecosystem",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.45,
+          "notes": "Persistent operational memory is still a product and research frontier."
+        },
+        {
+          "id": "provenance",
+          "name": "Provenance and auditability",
+          "score": 30,
+          "weight": 0.2,
+          "rawValue": "Ability to trace data and decision origins",
+          "normalization": "Curated score for traceable AI memory.",
+          "source": {
+            "label": "NIST AI Risk Management Framework",
+            "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+            "publisher": "NIST",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.52,
+          "notes": "Traceability is essential for delegating high-stakes work."
+        }
+      ]
+    },
+    {
+      "id": "robotics-physical-world",
+      "name": "Robotics and physical world",
+      "category": "autonomy",
+      "score": 28.3,
+      "confidence": 0.58,
+      "weight": 0.15,
+      "bottleneck": "General-purpose physical autonomy is scarce",
+      "summary": "Robotics adoption is real, but most robots are specialized automation rather than general embodied intelligence.",
+      "criteria": [
+        {
+          "id": "industrial-robot-density",
+          "name": "Industrial robot deployment",
+          "score": 46,
+          "weight": 0.3,
+          "rawValue": "Robot installation and density trends",
+          "normalization": "Curated deployment score from industrial robotics signals.",
+          "source": {
+            "label": "IFR World Robotics",
+            "url": "https://ifr.org/worldrobotics",
+            "publisher": "International Federation of Robotics",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "annual",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.68,
+          "notes": "Deployment exists, but most systems are narrow."
+        },
+        {
+          "id": "general-embodiment",
+          "name": "General embodied intelligence",
+          "score": 14,
+          "weight": 0.35,
+          "rawValue": "General-purpose manipulation, navigation, and learning",
+          "normalization": "Strict autonomy score for broad physical competence.",
+          "source": {
+            "label": "AI Index robotics coverage",
+            "url": "https://aiindex.stanford.edu/report/",
+            "publisher": "Stanford HAI",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "annual",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.52,
+          "notes": "The gap between demos and reliable general robots remains large."
+        },
+        {
+          "id": "safety-certification",
+          "name": "Physical safety certification",
+          "score": 24,
+          "weight": 0.2,
+          "rawValue": "Safety cases for AI-controlled physical systems",
+          "normalization": "Curated readiness score.",
+          "source": {
+            "label": "ISO robotics standards",
+            "url": "https://www.iso.org/",
+            "publisher": "ISO",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.46,
+          "notes": "Safety certification slows broad autonomy in the physical world."
+        },
+        {
+          "id": "supply-and-cost",
+          "name": "Robot cost and supply readiness",
+          "score": 32,
+          "weight": 0.15,
+          "rawValue": "Hardware cost, availability, and maintenance burden",
+          "normalization": "Curated deployment-readiness score.",
+          "source": {
+            "label": "IFR World Robotics",
+            "url": "https://ifr.org/worldrobotics",
+            "publisher": "International Federation of Robotics",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "annual",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.5,
+          "notes": "Cost and maintenance still constrain physical scale."
+        }
+      ]
+    },
+    {
+      "id": "enterprise-economy",
+      "name": "Enterprise economy",
+      "category": "autonomy",
+      "score": 34.4,
+      "confidence": 0.63,
+      "weight": 0.2,
+      "bottleneck": "AI adoption has not become AI control",
+      "summary": "Enterprise use is widespread, but most value still comes from augmentation rather than AI owning core production functions.",
+      "criteria": [
+        {
+          "id": "organizational-adoption",
+          "name": "Organizational AI adoption",
+          "score": 58,
+          "weight": 0.25,
+          "rawValue": "Surveyed enterprise AI and generative AI adoption",
+          "normalization": "Curated adoption score.",
+          "source": {
+            "label": "McKinsey State of AI",
+            "url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+            "publisher": "McKinsey",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "annual",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.66,
+          "notes": "Adoption is no longer fringe."
+        },
+        {
+          "id": "core-production-control",
+          "name": "Core production control",
+          "score": 24,
+          "weight": 0.35,
+          "rawValue": "AI ownership of core workflows and output accountability",
+          "normalization": "Strict autonomy score.",
+          "source": {
+            "label": "McKinsey State of AI",
+            "url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+            "publisher": "McKinsey",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "annual",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.58,
+          "notes": "AI is usually embedded as assistance, not final ownership."
+        },
+        {
+          "id": "roi-at-scale",
+          "name": "Scaled ROI evidence",
+          "score": 34,
+          "weight": 0.25,
+          "rawValue": "Evidence of scaled financial impact",
+          "normalization": "Curated score for durable enterprise value.",
+          "source": {
+            "label": "Deloitte State of Generative AI",
+            "url": "https://www.deloitte.com/",
+            "publisher": "Deloitte",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.5,
+          "notes": "Many organizations are still between pilot and scaled value."
+        },
+        {
+          "id": "labor-substitution",
+          "name": "Labor substitution in critical workflows",
+          "score": 20,
+          "weight": 0.15,
+          "rawValue": "AI replacing rather than augmenting human work",
+          "normalization": "Strict control score.",
+          "source": {
+            "label": "OECD AI and work",
+            "url": "https://oecd.ai/",
+            "publisher": "OECD",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "continuous",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.48,
+          "notes": "Substitution exists in pockets, but broad control has not shifted."
+        }
+      ]
+    },
+    {
+      "id": "safety-governance",
+      "name": "Safety and governance",
+      "category": "governance",
+      "score": 29.5,
+      "confidence": 0.64,
+      "weight": 1,
+      "bottleneck": "Governance maturity trails deployment speed",
+      "summary": "Safety evaluation, incident tracking, and policy work are maturing, but the world lacks robust audit and control mechanisms for broad AI autonomy.",
+      "criteria": [
+        {
+          "id": "incident-monitoring",
+          "name": "Incident monitoring",
+          "score": 34,
+          "weight": 0.25,
+          "rawValue": "AI incident and hazard tracking",
+          "normalization": "Curated score for monitoring maturity.",
+          "source": {
+            "label": "OECD AI Incidents Monitor",
+            "url": "https://oecd.ai/en/incidents",
+            "publisher": "OECD",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "continuous",
+            "automationStatus": "semi_automatic"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.68,
+          "notes": "Tracking is improving, but completeness and taxonomy remain challenges."
+        },
+        {
+          "id": "safety-benchmarks",
+          "name": "Safety benchmark maturity",
+          "score": 28,
+          "weight": 0.25,
+          "rawValue": "Safety evaluations, red teaming, and responsible AI benchmarks",
+          "normalization": "Curated maturity score.",
+          "source": {
+            "label": "MLCommons AILuminate",
+            "url": "https://mlcommons.org/",
+            "publisher": "MLCommons",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.55,
+          "notes": "Benchmarks are improving but lag frontier deployment."
+        },
+        {
+          "id": "regulatory-readiness",
+          "name": "Regulatory readiness",
+          "score": 32,
+          "weight": 0.25,
+          "rawValue": "Policy, standards, audits, and compliance structures",
+          "normalization": "Curated governance-readiness score.",
+          "source": {
+            "label": "NIST AI Risk Management Framework",
+            "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+            "publisher": "NIST",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.62,
+          "notes": "Frameworks exist, but operational enforcement varies."
+        },
+        {
+          "id": "auditability",
+          "name": "System auditability",
+          "score": 24,
+          "weight": 0.25,
+          "rawValue": "Ability to inspect, replay, and govern AI decisions",
+          "normalization": "Strict governance score.",
+          "source": {
+            "label": "OECD AI Principles",
+            "url": "https://oecd.ai/en/ai-principles",
+            "publisher": "OECD",
+            "accessedAt": "2026-05-31",
+            "updateCadence": "periodic",
+            "automationStatus": "manual"
+          },
+          "observedAt": "2026-05-31",
+          "confidence": 0.52,
+          "notes": "Auditability is not yet standard across AI workflows."
+        }
+      ]
+    }
+  ],
+  "headlines": {
+    "capability": 50.6,
+    "autonomy": 34.3,
+    "governance": 29.5,
+    "siliconWorld": 39
+  }
+}
