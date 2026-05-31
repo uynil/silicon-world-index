@@ -2,7 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { calculateSnapshotScores } from "../src/lib/scoring";
-import { toHistoryEntry, upsertHistoryEntry } from "../src/lib/history";
+import { findPreviousHistoryEntry, toHistoryEntry, upsertHistoryEntry } from "../src/lib/history";
 import type { HistoryEntry, SeedSnapshot } from "../src/types";
 
 const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -14,7 +14,8 @@ async function main() {
 
   const historyPath = resolve(dataDir, "history.json");
   const existingHistory = await readOptionalJson<HistoryEntry[]>(historyPath, []);
-  const history = upsertHistoryEntry(existingHistory, toHistoryEntry(snapshot));
+  const previousEntry = findPreviousHistoryEntry(existingHistory, snapshot.metadata.period);
+  const history = upsertHistoryEntry(existingHistory, toHistoryEntry(snapshot, previousEntry));
 
   await writeJson(resolve(dataDir, "latest.json"), snapshot);
   await writeJson(historyPath, history);

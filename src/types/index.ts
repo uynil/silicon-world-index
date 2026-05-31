@@ -59,11 +59,42 @@ export interface IndexSnapshot extends SeedSnapshot {
   headlines: HeadlineScores;
 }
 
+export type TrendAnnotationType = "data_update" | "methodology_change" | "source_change";
+
+export interface TrendAnnotation {
+  type: TrendAnnotationType;
+  title: string;
+  note: string;
+}
+
+export interface HistoryModule {
+  id: string;
+  name: string;
+  category: HeadlineCategory;
+  score: number;
+  confidence: number;
+  bottleneck: string;
+  delta: number;
+}
+
+export interface HistoryCriterion {
+  moduleId: string;
+  moduleName: string;
+  id: string;
+  name: string;
+  score: number;
+  weight: number;
+  confidence: number;
+  sourceAutomationStatus: AutomationStatus;
+  delta: number;
+}
+
 export interface HistoryEntry {
   period: string;
   updatedAt: string;
-  siliconWorld: number;
-  capability: number;
-  autonomy: number;
-  governance: number;
+  methodologyVersion: string;
+  headlines: HeadlineScores;
+  modules: HistoryModule[];
+  criteria: HistoryCriterion[];
+  annotations: TrendAnnotation[];
 }

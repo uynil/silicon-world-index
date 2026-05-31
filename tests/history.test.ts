@@ -6,10 +6,44 @@ function entry(period: string, siliconWorld: number): HistoryEntry {
   return {
     period,
     updatedAt: `${period}-15`,
-    siliconWorld,
-    capability: siliconWorld + 10,
-    autonomy: siliconWorld,
-    governance: siliconWorld - 10,
+    methodologyVersion: "0.1.0",
+    headlines: {
+      siliconWorld,
+      capability: siliconWorld + 10,
+      autonomy: siliconWorld,
+      governance: siliconWorld - 10,
+    },
+    modules: [
+      {
+        id: "agent-execution",
+        name: "Agent execution",
+        category: "autonomy",
+        score: 31,
+        confidence: 0.6,
+        bottleneck: "Long tasks",
+        delta: 0,
+      },
+    ],
+    criteria: [
+      {
+        moduleId: "agent-execution",
+        moduleName: "Agent execution",
+        id: "long-task",
+        name: "Long task autonomy",
+        score: 24,
+        weight: 1,
+        confidence: 0.5,
+        sourceAutomationStatus: "semi_automatic",
+        delta: 0,
+      },
+    ],
+    annotations: [
+      {
+        type: "data_update",
+        title: "Snapshot regenerated",
+        note: `Updated ${period} from curated seed data.`,
+      },
+    ],
   };
 }
 
@@ -32,13 +66,103 @@ function snapshot(period: string, siliconWorld: number): IndexSnapshot {
       autonomy: siliconWorld,
       governance: siliconWorld - 10,
     },
-    modules: [],
+    modules: [
+      {
+        id: "agent-execution",
+        name: "Agent execution",
+        category: "autonomy",
+        score: 31,
+        confidence: 0.6,
+        weight: 1,
+        bottleneck: "Long tasks",
+        summary: "Agents still need supervision.",
+        criteria: [
+          {
+            id: "long-task",
+            name: "Long task autonomy",
+            score: 24,
+            weight: 1,
+            rawValue: "METR proxy",
+            normalization: "curated",
+            source: {
+              label: "METR",
+              url: "https://metr.org/",
+              publisher: "METR",
+              accessedAt: `${period}-15`,
+              updateCadence: "periodic",
+              automationStatus: "semi_automatic",
+            },
+            observedAt: `${period}-15`,
+            confidence: 0.5,
+            notes: "Long tasks remain hard.",
+          },
+        ],
+      },
+    ],
   };
 }
 
 describe("history", () => {
-  it("converts snapshots to compact history entries", () => {
-    expect(toHistoryEntry(snapshot("2026-05", 31))).toEqual(entry("2026-05", 31));
+  it("converts snapshots to rich trend entries", () => {
+    const trendEntry = toHistoryEntry(snapshot("2026-05", 31));
+
+    expect(trendEntry).toMatchObject(entry("2026-05", 31));
+    expect(trendEntry.modules).toEqual([
+      {
+        id: "agent-execution",
+        name: "Agent execution",
+        category: "autonomy",
+        score: 31,
+        confidence: 0.6,
+        bottleneck: "Long tasks",
+        delta: 0,
+      },
+    ]);
+    expect(trendEntry.criteria[0]).toMatchObject({
+      moduleId: "agent-execution",
+      moduleName: "Agent execution",
+      id: "long-task",
+      name: "Long task autonomy",
+      score: 24,
+      weight: 1,
+      confidence: 0.5,
+      sourceAutomationStatus: "semi_automatic",
+      delta: 0,
+    });
+  });
+
+  it("calculates module and criterion deltas from a previous entry", () => {
+    const previous = {
+      ...entry("2026-04", 28),
+      modules: [
+        {
+          id: "agent-execution",
+          name: "Agent execution",
+          category: "autonomy" as const,
+          score: 25,
+          confidence: 0.5,
+          bottleneck: "Long tasks",
+          delta: 0,
+        },
+      ],
+      criteria: [
+        {
+          moduleId: "agent-execution",
+          moduleName: "Agent execution",
+          id: "long-task",
+          name: "Long task autonomy",
+          score: 20,
+          weight: 1,
+          confidence: 0.4,
+          sourceAutomationStatus: "semi_automatic" as const,
+          delta: 0,
+        },
+      ],
+    };
+    const trendEntry = toHistoryEntry(snapshot("2026-05", 31), previous);
+
+    expect(trendEntry.modules[0].delta).toBe(6);
+    expect(trendEntry.criteria[0].delta).toBe(4);
   });
 
   it("appends a new period", () => {
@@ -54,7 +178,7 @@ describe("history", () => {
     );
 
     expect(result).toHaveLength(2);
-    expect(result.find((item) => item.period === "2026-05")?.siliconWorld).toBe(31);
+    expect(result.find((item) => item.period === "2026-05")?.headlines.siliconWorld).toBe(31);
   });
 
   it("sorts periods ascending", () => {

@@ -2,9 +2,531 @@
   {
     "period": "2026-05",
     "updatedAt": "2026-05-31",
-    "siliconWorld": 39,
-    "capability": 50.6,
-    "autonomy": 34.3,
-    "governance": 29.5
+    "methodologyVersion": "0.1.0",
+    "headlines": {
+      "capability": 50.6,
+      "autonomy": 34.3,
+      "governance": 29.5,
+      "siliconWorld": 39
+    },
+    "modules": [
+      {
+        "id": "model-intelligence",
+        "name": "Model intelligence",
+        "category": "capability",
+        "score": 54.6,
+        "confidence": 0.72,
+        "bottleneck": "Reliability still trails benchmark performance",
+        "delta": 0
+      },
+      {
+        "id": "multimodal-content",
+        "name": "Multimodal content",
+        "category": "capability",
+        "score": 49.8,
+        "confidence": 0.66,
+        "bottleneck": "Generation is strong, production control is still human-led",
+        "delta": 0
+      },
+      {
+        "id": "scientific-discovery",
+        "name": "Scientific discovery",
+        "category": "capability",
+        "score": 41,
+        "confidence": 0.61,
+        "bottleneck": "AI assists science more than it autonomously discovers",
+        "delta": 0
+      },
+      {
+        "id": "compute-infrastructure",
+        "name": "Compute infrastructure",
+        "category": "capability",
+        "score": 54.2,
+        "confidence": 0.75,
+        "bottleneck": "Energy and supply chains constrain scaling",
+        "delta": 0
+      },
+      {
+        "id": "agent-execution",
+        "name": "Agent execution",
+        "category": "autonomy",
+        "score": 31.8,
+        "confidence": 0.67,
+        "bottleneck": "Long-horizon reliability remains low",
+        "delta": 0
+      },
+      {
+        "id": "tools-workflows",
+        "name": "Tools and workflows",
+        "category": "autonomy",
+        "score": 40.8,
+        "confidence": 0.61,
+        "bottleneck": "Verification infrastructure is uneven",
+        "delta": 0
+      },
+      {
+        "id": "data-memory",
+        "name": "Data and memory",
+        "category": "autonomy",
+        "score": 36.4,
+        "confidence": 0.55,
+        "bottleneck": "World state and enterprise memory are fragmented",
+        "delta": 0
+      },
+      {
+        "id": "robotics-physical-world",
+        "name": "Robotics and physical world",
+        "category": "autonomy",
+        "score": 28.3,
+        "confidence": 0.58,
+        "bottleneck": "General-purpose physical autonomy is scarce",
+        "delta": 0
+      },
+      {
+        "id": "enterprise-economy",
+        "name": "Enterprise economy",
+        "category": "autonomy",
+        "score": 34.4,
+        "confidence": 0.63,
+        "bottleneck": "AI adoption has not become AI control",
+        "delta": 0
+      },
+      {
+        "id": "safety-governance",
+        "name": "Safety and governance",
+        "category": "governance",
+        "score": 29.5,
+        "confidence": 0.64,
+        "bottleneck": "Governance maturity trails deployment speed",
+        "delta": 0
+      }
+    ],
+    "criteria": [
+      {
+        "moduleId": "model-intelligence",
+        "moduleName": "Model intelligence",
+        "id": "general-benchmarks",
+        "name": "General benchmark strength",
+        "score": 72,
+        "weight": 0.3,
+        "confidence": 0.75,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "model-intelligence",
+        "moduleName": "Model intelligence",
+        "id": "code-reasoning",
+        "name": "Code and reasoning performance",
+        "score": 58,
+        "weight": 0.3,
+        "confidence": 0.68,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "model-intelligence",
+        "moduleName": "Model intelligence",
+        "id": "truthfulness",
+        "name": "Factual reliability and self-checking",
+        "score": 36,
+        "weight": 0.25,
+        "confidence": 0.62,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "model-intelligence",
+        "moduleName": "Model intelligence",
+        "id": "long-context",
+        "name": "Long-context consistency",
+        "score": 44,
+        "weight": 0.15,
+        "confidence": 0.55,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "multimodal-content",
+        "moduleName": "Multimodal content",
+        "id": "image-document-understanding",
+        "name": "Image and document understanding",
+        "score": 62,
+        "weight": 0.35,
+        "confidence": 0.68,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "multimodal-content",
+        "moduleName": "Multimodal content",
+        "id": "video-audio-generation",
+        "name": "Video and audio generation",
+        "score": 54,
+        "weight": 0.3,
+        "confidence": 0.58,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "multimodal-content",
+        "moduleName": "Multimodal content",
+        "id": "content-production-control",
+        "name": "End-to-end content production control",
+        "score": 34,
+        "weight": 0.35,
+        "confidence": 0.54,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "scientific-discovery",
+        "moduleName": "Scientific discovery",
+        "id": "research-assistance",
+        "name": "Research assistance capability",
+        "score": 56,
+        "weight": 0.4,
+        "confidence": 0.62,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "scientific-discovery",
+        "moduleName": "Scientific discovery",
+        "id": "lab-automation-loop",
+        "name": "Closed-loop lab automation",
+        "score": 26,
+        "weight": 0.35,
+        "confidence": 0.48,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "scientific-discovery",
+        "moduleName": "Scientific discovery",
+        "id": "validation-reproducibility",
+        "name": "Validation and reproducibility",
+        "score": 38,
+        "weight": 0.25,
+        "confidence": 0.5,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "compute-infrastructure",
+        "moduleName": "Compute infrastructure",
+        "id": "frontier-compute",
+        "name": "Frontier training compute",
+        "score": 68,
+        "weight": 0.35,
+        "confidence": 0.78,
+        "sourceAutomationStatus": "semi_automatic",
+        "delta": 0
+      },
+      {
+        "moduleId": "compute-infrastructure",
+        "moduleName": "Compute infrastructure",
+        "id": "inference-cost",
+        "name": "Inference affordability",
+        "score": 52,
+        "weight": 0.25,
+        "confidence": 0.66,
+        "sourceAutomationStatus": "semi_automatic",
+        "delta": 0
+      },
+      {
+        "moduleId": "compute-infrastructure",
+        "moduleName": "Compute infrastructure",
+        "id": "energy-capacity",
+        "name": "Energy and data center capacity",
+        "score": 42,
+        "weight": 0.25,
+        "confidence": 0.7,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "compute-infrastructure",
+        "moduleName": "Compute infrastructure",
+        "id": "supply-chain",
+        "name": "Chip and memory supply chain",
+        "score": 46,
+        "weight": 0.15,
+        "confidence": 0.58,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "agent-execution",
+        "moduleName": "Agent execution",
+        "id": "issue-repair",
+        "name": "Single issue repair",
+        "score": 52,
+        "weight": 0.25,
+        "confidence": 0.72,
+        "sourceAutomationStatus": "semi_automatic",
+        "delta": 0
+      },
+      {
+        "moduleId": "agent-execution",
+        "moduleName": "Agent execution",
+        "id": "time-horizon",
+        "name": "Long task time horizon",
+        "score": 24,
+        "weight": 0.35,
+        "confidence": 0.68,
+        "sourceAutomationStatus": "semi_automatic",
+        "delta": 0
+      },
+      {
+        "moduleId": "agent-execution",
+        "moduleName": "Agent execution",
+        "id": "tool-recovery",
+        "name": "Tool failure recovery",
+        "score": 34,
+        "weight": 0.2,
+        "confidence": 0.5,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "agent-execution",
+        "moduleName": "Agent execution",
+        "id": "low-supervision",
+        "name": "Low-supervision execution",
+        "score": 18,
+        "weight": 0.2,
+        "confidence": 0.56,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "tools-workflows",
+        "moduleName": "Tools and workflows",
+        "id": "tool-use",
+        "name": "Tool use maturity",
+        "score": 56,
+        "weight": 0.3,
+        "confidence": 0.62,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "tools-workflows",
+        "moduleName": "Tools and workflows",
+        "id": "workflow-integration",
+        "name": "Workflow integration",
+        "score": 42,
+        "weight": 0.3,
+        "confidence": 0.58,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "tools-workflows",
+        "moduleName": "Tools and workflows",
+        "id": "verification",
+        "name": "Verification infrastructure",
+        "score": 30,
+        "weight": 0.25,
+        "confidence": 0.54,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "tools-workflows",
+        "moduleName": "Tools and workflows",
+        "id": "orchestration",
+        "name": "Autonomous orchestration",
+        "score": 26,
+        "weight": 0.15,
+        "confidence": 0.45,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "data-memory",
+        "moduleName": "Data and memory",
+        "id": "public-knowledge",
+        "name": "Public knowledge coverage",
+        "score": 66,
+        "weight": 0.25,
+        "confidence": 0.62,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "data-memory",
+        "moduleName": "Data and memory",
+        "id": "enterprise-data-readiness",
+        "name": "Enterprise data readiness",
+        "score": 28,
+        "weight": 0.3,
+        "confidence": 0.55,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "data-memory",
+        "moduleName": "Data and memory",
+        "id": "persistent-memory",
+        "name": "Persistent project memory",
+        "score": 22,
+        "weight": 0.25,
+        "confidence": 0.45,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "data-memory",
+        "moduleName": "Data and memory",
+        "id": "provenance",
+        "name": "Provenance and auditability",
+        "score": 30,
+        "weight": 0.2,
+        "confidence": 0.52,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "robotics-physical-world",
+        "moduleName": "Robotics and physical world",
+        "id": "industrial-robot-density",
+        "name": "Industrial robot deployment",
+        "score": 46,
+        "weight": 0.3,
+        "confidence": 0.68,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "robotics-physical-world",
+        "moduleName": "Robotics and physical world",
+        "id": "general-embodiment",
+        "name": "General embodied intelligence",
+        "score": 14,
+        "weight": 0.35,
+        "confidence": 0.52,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "robotics-physical-world",
+        "moduleName": "Robotics and physical world",
+        "id": "safety-certification",
+        "name": "Physical safety certification",
+        "score": 24,
+        "weight": 0.2,
+        "confidence": 0.46,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "robotics-physical-world",
+        "moduleName": "Robotics and physical world",
+        "id": "supply-and-cost",
+        "name": "Robot cost and supply readiness",
+        "score": 32,
+        "weight": 0.15,
+        "confidence": 0.5,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "enterprise-economy",
+        "moduleName": "Enterprise economy",
+        "id": "organizational-adoption",
+        "name": "Organizational AI adoption",
+        "score": 58,
+        "weight": 0.25,
+        "confidence": 0.66,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "enterprise-economy",
+        "moduleName": "Enterprise economy",
+        "id": "core-production-control",
+        "name": "Core production control",
+        "score": 24,
+        "weight": 0.35,
+        "confidence": 0.58,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "enterprise-economy",
+        "moduleName": "Enterprise economy",
+        "id": "roi-at-scale",
+        "name": "Scaled ROI evidence",
+        "score": 34,
+        "weight": 0.25,
+        "confidence": 0.5,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "enterprise-economy",
+        "moduleName": "Enterprise economy",
+        "id": "labor-substitution",
+        "name": "Labor substitution in critical workflows",
+        "score": 20,
+        "weight": 0.15,
+        "confidence": 0.48,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "safety-governance",
+        "moduleName": "Safety and governance",
+        "id": "incident-monitoring",
+        "name": "Incident monitoring",
+        "score": 34,
+        "weight": 0.25,
+        "confidence": 0.68,
+        "sourceAutomationStatus": "semi_automatic",
+        "delta": 0
+      },
+      {
+        "moduleId": "safety-governance",
+        "moduleName": "Safety and governance",
+        "id": "safety-benchmarks",
+        "name": "Safety benchmark maturity",
+        "score": 28,
+        "weight": 0.25,
+        "confidence": 0.55,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "safety-governance",
+        "moduleName": "Safety and governance",
+        "id": "regulatory-readiness",
+        "name": "Regulatory readiness",
+        "score": 32,
+        "weight": 0.25,
+        "confidence": 0.62,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      },
+      {
+        "moduleId": "safety-governance",
+        "moduleName": "Safety and governance",
+        "id": "auditability",
+        "name": "System auditability",
+        "score": 24,
+        "weight": 0.25,
+        "confidence": 0.52,
+        "sourceAutomationStatus": "manual",
+        "delta": 0
+      }
+    ],
+    "annotations": [
+      {
+        "type": "data_update",
+        "title": "Snapshot regenerated",
+        "note": "Updated 2026-05 from curated seed data."
+      }
+    ]
   }
 ]

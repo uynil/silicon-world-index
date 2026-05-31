@@ -112,6 +112,10 @@ h3 {
 .module-detail,
 .method-card,
 .source-table-wrap,
+.trend-metric,
+.heatmap-panel,
+.driver-panel,
+.annotation-card,
 .empty-state {
   border: 1px solid #d9dfd5;
   border-radius: 8px;
@@ -138,6 +142,30 @@ h3 {
 
 .hero-panel strong {
   font-size: 1.25rem;
+}
+
+.view-tabs {
+  display: flex;
+  gap: 8px;
+  max-width: 1280px;
+  margin: 0 auto 20px;
+}
+
+.view-tabs button {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #d6ddd3;
+  border-radius: 999px;
+  background: #fbfcf7;
+  color: #39493f;
+  cursor: pointer;
+}
+
+.view-tabs button:hover,
+.view-tabs button.active {
+  border-color: #3d7659;
+  background: #e6f0e4;
+  color: #122019;
 }
 
 .score-grid {
@@ -191,6 +219,168 @@ h3 {
 .chart-panel {
   min-width: 0;
   padding: 18px;
+}
+
+.trends-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(360px, 1fr);
+  gap: 18px;
+  align-items: end;
+}
+
+.trend-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.trend-metric {
+  padding: 16px;
+}
+
+.trend-metric span {
+  display: block;
+  min-height: 38px;
+  color: #66766d;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.trend-metric strong {
+  display: block;
+  margin-top: 12px;
+  color: #101812;
+  font-size: clamp(1.9rem, 5vw, 3.2rem);
+  line-height: 1;
+}
+
+.trend-chart {
+  padding: 20px;
+}
+
+.trend-grid-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.heatmap-panel,
+.driver-panel {
+  min-width: 0;
+  padding: 18px;
+}
+
+.panel-heading {
+  margin-bottom: 16px;
+}
+
+.heatmap-scroll {
+  overflow-x: auto;
+}
+
+.heatmap {
+  display: grid;
+  gap: 6px;
+  min-width: max-content;
+}
+
+.heatmap-label,
+.heatmap-module-name,
+.heatmap-cell {
+  min-height: 38px;
+  padding: 9px 10px;
+  border-radius: 6px;
+}
+
+.heatmap-label {
+  color: #68776e;
+  font-size: 0.78rem;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.heatmap-module-name {
+  background: #f4f6f1;
+  color: #2f4036;
+  font-weight: 700;
+}
+
+.heatmap-cell {
+  color: #101812;
+  font-weight: 800;
+  text-align: center;
+}
+
+.driver-group {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.driver-group h4 {
+  margin: 0;
+  color: #3f4e45;
+}
+
+.delta-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #e1e6dd;
+  border-radius: 8px;
+  background: #fbfcf7;
+}
+
+.delta-row strong,
+.delta-row span {
+  display: block;
+}
+
+.delta-row strong {
+  color: #162019;
+}
+
+.delta-row span {
+  margin-top: 3px;
+  color: #69776e;
+  font-size: 0.85rem;
+}
+
+.delta-values {
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+  min-width: 78px;
+}
+
+.delta-values > span:first-child {
+  color: #152018;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.delta-positive,
+.delta-negative,
+.delta-flat {
+  display: inline-flex !important;
+  gap: 3px;
+  align-items: center;
+  font-weight: 800;
+}
+
+.delta-positive {
+  color: #1f7a56 !important;
+}
+
+.delta-negative {
+  color: #a6442e !important;
+}
+
+.delta-flat {
+  color: #69776e !important;
 }
 
 .section-heading {
@@ -393,6 +583,26 @@ h3 {
   text-transform: uppercase;
 }
 
+.annotation-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.annotation-card {
+  padding: 18px;
+}
+
+.annotation-card span {
+  color: #3e6f55;
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.annotation-card p {
+  margin-bottom: 0;
+}
+
 .empty-state {
   max-width: 720px;
   margin: 80px auto;
@@ -406,12 +616,16 @@ h3 {
 
   .hero,
   .two-column,
-  .module-layout {
+  .module-layout,
+  .trends-hero,
+  .trend-grid-layout {
     grid-template-columns: 1fr;
   }
 
   .score-grid,
-  .method-grid {
+  .method-grid,
+  .trend-summary-grid,
+  .annotation-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -431,7 +645,9 @@ h3 {
 
   .score-grid,
   .module-grid,
-  .method-grid {
+  .method-grid,
+  .trend-summary-grid,
+  .annotation-list {
     grid-template-columns: 1fr;
   }
 
