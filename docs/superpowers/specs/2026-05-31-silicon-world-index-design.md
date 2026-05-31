@@ -155,17 +155,49 @@ Each criterion contains:
 - `confidence`
 - `notes`
 
+The `source` field should be an object, not a plain string:
+
+- `label`
+- `url`
+- `publisher`
+- `accessedAt`
+- `updateCadence`
+- `automationStatus`
+
+`automationStatus` is one of:
+
+- `manual`: curated by hand.
+- `semi_automatic`: script-assisted but reviewed.
+- `automatic`: fetched and normalized without manual changes.
+
+The first release should mark most sources as `manual` or `semi_automatic`. This prevents the UI from implying a false level of automation.
+
 ## Scoring Rules
 
 The first implementation should keep scoring simple and testable.
 
 - Module score is the weighted average of criteria scores.
-- Headline score is the weighted average of selected module scores.
+- Headline score is the weighted average of selected module scores by category.
 - Silicon World Index is a weighted aggregate of capability, autonomy, and governance headline scores.
 - Criteria weights within each module must sum to 1.
 - Headline aggregate weights must sum to 1.
+- Module weights within each headline category must sum to 1.
 - Scores are clamped to 0 through 100 only at data validation boundaries; calculation should reject invalid input rather than silently hide it.
 - Confidence is displayed separately and must not be blended into the score.
+
+Suggested headline categories:
+
+- Capability: model intelligence, multimodal content, scientific discovery, compute infrastructure.
+- Autonomy: agent execution, tools and workflows, data and memory, robotics and physical world, enterprise economy.
+- Governance: safety and governance.
+
+Suggested Silicon World aggregate weights:
+
+- Capability: 35%.
+- Autonomy: 45%.
+- Governance: 20%.
+
+These weights should live in data/config rather than being hard-coded in UI components.
 
 The first release uses curated sample values based on the previous research conversation. Later releases can replace individual criteria with automated source adapters one by one.
 
@@ -204,6 +236,8 @@ It should be independent from React so tests and update scripts can reuse it.
 
 The script should be deterministic and safe to run repeatedly.
 
+The update script should treat `period` as a monthly `YYYY-MM` identifier. If a history entry already exists for the same period, the script replaces it instead of appending a duplicate.
+
 ### GitHub Actions
 
 `.github/workflows/update-index.yml` should:
@@ -216,12 +250,20 @@ The script should be deterministic and safe to run repeatedly.
 
 The workflow is a scaffold in the first release. It should not depend on external scraping yet.
 
+The workflow should run with the minimum required permissions:
+
+- `contents: write` only for committing generated JSON.
+- No secrets in the first release.
+- No external network dependency beyond dependency installation.
+
 ## Error Handling
 
 - The app should show a clear empty/error state if JSON data cannot load.
 - The update script should fail loudly on invalid weights, invalid scores, missing sources, or malformed periods.
 - Tests should cover invalid weights and duplicate history periods.
 - The UI should display source freshness so stale data is visible.
+- The UI should visually distinguish calculated scores from manually curated rationale.
+- The app should remain usable on mobile widths without overlapping score cards, charts, or module details.
 
 ## Testing Strategy
 
@@ -236,6 +278,8 @@ Required tests:
 - Headline score calculation matches configured module weights.
 - History update replaces an existing period instead of duplicating it.
 - Snapshot generated from seed data has traceable sources for every criterion.
+- Headline category weights are validated independently from criterion weights.
+- Source automation status is present for every criterion.
 
 Frontend tests can be light in the first release; the highest-risk behavior is scoring and update determinism.
 
