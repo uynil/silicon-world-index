@@ -79,6 +79,12 @@ Build:
 pnpm build
 ```
 
+Build with the GitHub Pages base path:
+
+```bash
+VITE_BASE_PATH=/silicon-world-index/ pnpm build
+```
+
 ## Methodology
 
 Module scores are weighted averages of criteria scores. Headline scores are weighted averages of module scores within each category. The Silicon World Index is a weighted aggregate of capability, autonomy, and governance.
@@ -92,3 +98,20 @@ The index is designed for trend tracking and structured debate, not as an offici
 `.github/workflows/update-index.yml` runs monthly and can also be triggered manually. The workflow installs dependencies, runs tests, regenerates JSON data, and commits generated changes if any exist.
 
 The first release does not scrape external sources. Future work should replace criteria one at a time with source adapters while preserving the same JSON schema and tests.
+
+## Deploy to GitHub Pages
+
+This repo includes `.github/workflows/deploy-pages.yml`. After pushing to GitHub:
+
+1. Open the repository on GitHub.
+2. Go to `Settings` -> `Pages`.
+3. Set `Build and deployment` source to `GitHub Actions`.
+4. Push to `master` or `main`, or run the `Deploy GitHub Pages` workflow manually.
+
+The workflow runs tests, builds the Vite app with:
+
+```bash
+VITE_BASE_PATH=/silicon-world-index/ pnpm build
+```
+
+and publishes `dist/` to GitHub Pages.
