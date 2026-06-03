@@ -108,6 +108,9 @@ This repo includes `.github/workflows/deploy-pages.yml`. After pushing to GitHub
 3. Set `Build and deployment` source to `GitHub Actions`.
 4. Push to `master` or `main`, or run the `Deploy GitHub Pages` workflow manually.
 
+If Pages is not enabled yet, the workflow also passes `enablement: true` to
+`actions/configure-pages` so the first run can create the Pages site.
+
 The workflow runs tests, builds the Vite app with:
 
 ```bash
