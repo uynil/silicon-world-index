@@ -37,6 +37,39 @@ select {
   padding: 32px;
 }
 
+.toolbar-row {
+  max-width: 1280px;
+  margin: 0 auto 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid #d6ddd3;
+  border-radius: 999px;
+  background: #fbfcf7;
+}
+
+.language-switch button {
+  min-height: 30px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: #3a4a3f;
+  cursor: pointer;
+}
+
+.language-switch button.active {
+  border-color: #3d7659;
+  background: #e6f0e4;
+  color: #122019;
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
